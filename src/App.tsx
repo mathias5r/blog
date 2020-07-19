@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
 
-function App() {
+const Container = styled.div`
+  height: 100vh;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 200px;
+`;
+
+const Area = styled.div`
+  display: flex;
+  flex: 1;
+  background-color: red;
+  border: 20px solid green;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  justify-content: center;
+`;
+
+const Info = styled.div`
+  flex: 0.5;
+  background-color: yellow;
+`;
+
+const Carousel = styled.div`
+  flex: 0.5;
+  background-color: yellow;
+  -webkit-transform: skewX(20deg);
+  -moz-transform: skewX(20deg);
+  -ms-transform: skewX(20deg);
+  -o-transform: skewX(20deg);
+  transform: skewX(20deg);
+`;
+
+function App(): JSX.Element {
+  console.log('teste')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Area><Carousel></Carousel></Area>
+      <Area><Info></Info></Area>
+    </Container>
+  )
 }
 
 export default App;

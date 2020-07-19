@@ -1,0 +1,6 @@
+{
+    "extends": [
+        "eslint-config-mathias/typescript",
+        "eslint-config-mathias/react"
+    ]
+}
