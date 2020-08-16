@@ -1,4 +1,5 @@
 {
+  "homepage": "https://mathias5r.github.io/blog",
   "name": "blog",
   "version": "0.1.0",
   "private": true,
@@ -18,6 +19,8 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -39,6 +42,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-mathias": "^1.0.1"
+    "eslint-config-mathias": "^1.0.1",
+    "gh-pages": "^3.1.0"
   }
 }
