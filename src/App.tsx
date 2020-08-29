@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Post from './components/Post';
+
+
+import profileImage from './15868862.png'
+
 const Container = styled.div`
   height: 100vh;
   background-color: black;
@@ -10,35 +15,39 @@ const Container = styled.div`
   }
 `;
 
-const Area = styled.div`
+const Posts = styled.div`
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
   position: relative;
+  padding-left: 200px;
 `;
+
 
 const Info = styled.div`
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-const Post = styled.div`
-  flex: 0.25;
-  transition: all 500ms ease-in-out;
-  transition-property: opacity, flex;
+const Profile = styled.div`
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  background-color: red;
   overflow: hidden;
-  position: relative;
-  opacity: 1;
-
-  &:hover {
-    flex: 0.6;
-    opacity: 0.5;
-  }
 `;
 
-const Image = styled.img`
-  position: absolute;
-  left: -80%;
-  height: 100vh;
+const ProfileImage = styled.img`
+  width: 300px;
+  height: 300px;
+`;
+
+const Name = styled.h3`
+  color: white;
+  text-align: center;
 `;
 
 const images = [
@@ -48,13 +57,19 @@ const images = [
   'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
 ];
 
-function App(): JSX.Element {
+const App = (): JSX.Element => {
+
   return (
     <Container>
-      <Area><Info></Info></Area>
-      <Area>
-        {images.map((image, index) => <Post key={index.toString()}><Image src={image} /></Post>)}
-      </Area>
+      <Info>
+        <Profile>
+          <ProfileImage src={profileImage} />
+        </Profile>
+        <Name>Mathias Silva da Rosa</Name>
+      </Info>
+      <Posts>
+        {images.map((image, index) => <Post key={index.toString()} backgroundImage={image} id={`post${index}`} />)}
+      </Posts>
     </Container>
   )
 }
