@@ -1,22 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
-import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import {
+  Observable,
+  fromEvent,
+} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { FromEventTarget } from 'rxjs/internal/observable/fromEvent'
 
-interface PostProps {
-  id: string;
-  backgroundImage: string;
-}
+import diagonalViewStyles from '../helpers/diagonalViewStyles';
 
-const DiagonalStyles = (degrees = 0): any => css`
-  -webkit-transform: skewX(${degrees}deg);
-  -moz-transform: skewX(${degrees}deg);	
-  -ms-transform: skewX(${degrees}deg);	
-  -o-transform: skewX(${degrees}deg);
-  transform: skewX(${degrees}deg);
-`
+interface PostProps {
+  index: number;
+  backgroundImage: string;
+  isMouseOver: boolean;
+  mousesOver$: Observable<any>[];
+  setMousesOver$:  ($: Observable<any>[]) => void;
+}
 
 const Container = styled.div<{ isMouseOver: boolean }>`
   flex: ${({ isMouseOver }): number => isMouseOver ? 0.6 : 0.25 };
@@ -24,14 +24,13 @@ const Container = styled.div<{ isMouseOver: boolean }>`
   position: relative;
   transition-property: flex;
   transition: all 500ms ease-in-out;
-
-  ${DiagonalStyles(-20)};
 `;
 
 const Background = styled.img<{ isMouseOver: boolean }>`
-  ${DiagonalStyles(20)};
+  ${diagonalViewStyles(20)};
   height: 100vh;
-  left: -80%;
+  min-height: 800px;
+  left: -100%;
   opacity: ${({ isMouseOver }): number => isMouseOver ? 0.3: 1 };
   position: absolute;
   transition-property: opacity;
@@ -40,7 +39,7 @@ const Background = styled.img<{ isMouseOver: boolean }>`
 `;
 
 const Content = styled.div`
-  ${DiagonalStyles(20)};
+  ${diagonalViewStyles(20)};
   height: 100vh;
   position: absolute;
   width: 100%;
@@ -69,33 +68,24 @@ const Text = styled.h4<{ isMouseOver: boolean }>`
 
 const Post = (props: PostProps): JSX.Element => {
 
-    const { id, backgroundImage } = props;
+    const { index, backgroundImage, isMouseOver, mousesOver$, setMousesOver$} = props;
 
-    const [isMouseOver, setIsMouseOver] = useState(false);
+    const id = `post${index}`;
 
     useEffect(() => {
-      const mouseOver = fromEvent(document.getElementById(id) as FromEventTarget<Event>, 'mouseover')
-        .pipe(debounceTime(200))
-        .subscribe(() => setIsMouseOver(true));
-
-      const mouseOut = fromEvent(document.getElementById(id) as FromEventTarget<Event>, 'mouseout')
-        .pipe(debounceTime(200))
-        .subscribe(() => setIsMouseOver(false));
-
-      return (): void => {
-        mouseOver.unsubscribe();
-        mouseOut.unsubscribe();
-      };
+      mousesOver$[index] = fromEvent(document.getElementById(id) as FromEventTarget<Event>, 'mouseenter')
+        .pipe(map(() =>  index));
+      setMousesOver$([...mousesOver$])
     }, [id]);
 
     return ( 
-        <Container {...{ id, isMouseOver }}>
-          <Content>
-            <Title {...{ isMouseOver }}>Title</Title>
-            <Text {...{ isMouseOver }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ratione vitae ipsam quidem delectus, laudantium magni animi molestias illum, cum nam? Voluptate nesciunt sunt delectus totam veritatis, asperiores quaerat vitae!</Text>
-          </Content>
-          <Background isMouseOver={isMouseOver} src={backgroundImage} />
-        </Container>
+      <Container {...{ id, isMouseOver }}>
+        <Content>
+          <Title {...{ isMouseOver }}>Title</Title>
+          <Text {...{ isMouseOver }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ratione vitae ipsam quidem delectus, laudantium magni animi molestias illum, cum nam? Voluptate nesciunt sunt delectus totam veritatis, asperiores quaerat vitae!</Text>
+        </Content>
+        <Background isMouseOver={isMouseOver} src={backgroundImage} />
+      </Container>
     )
 }
 

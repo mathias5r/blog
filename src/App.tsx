@@ -1,10 +1,22 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import { map } from 'rxjs/operators';
 
 import Post from './components/Post';
 
+import {
+  Observable,
+  merge,
+} from 'rxjs';
 
 import profileImage from './15868862.png'
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { FromEventTarget } from 'rxjs/internal/observable/fromEvent'
+
+import diagonalViewStyles from './helpers/diagonalViewStyles';
 
 const Container = styled.div`
   height: 100vh;
@@ -13,6 +25,8 @@ const Container = styled.div`
   @media(min-width: 1200px){
     grid-template-columns: 1fr 3fr;
   }
+  overflow: hidden;
+  padding: 0;
 `;
 
 const Posts = styled.div`
@@ -20,9 +34,9 @@ const Posts = styled.div`
   justify-content: flex-end;
   overflow: hidden;
   position: relative;
-  padding-left: 200px;
+  padding-left: 100px;
+  ${diagonalViewStyles(-20)};
 `;
-
 
 const Info = styled.div`
   display: flex;
@@ -59,6 +73,23 @@ const images = [
 
 const App = (): JSX.Element => {
 
+  const initial: Observable<any>[] = []; 
+  const [mousesOver$, setMousesOver$] = useState(initial);
+  const [itemUnderMouse, setItemUnderMouse] = useState(undefined);
+
+  useEffect(() => {
+    const posts$ = fromEvent(document.getElementById('posts') as FromEventTarget<Event>, 'mouseleave')
+      .pipe(map(() => undefined));
+
+    const merge$ = merge(...mousesOver$, posts$)
+      .pipe(debounceTime(200))
+      .subscribe(index => setItemUnderMouse(index));
+
+    return (): void => {
+      merge$.unsubscribe();
+    }
+  }, [mousesOver$])
+
   return (
     <Container>
       <Info>
@@ -67,8 +98,14 @@ const App = (): JSX.Element => {
         </Profile>
         <Name>Mathias Silva da Rosa</Name>
       </Info>
-      <Posts>
-        {images.map((image, index) => <Post key={index.toString()} backgroundImage={image} id={`post${index}`} />)}
+      <Posts id="posts">
+        {images.map((image, index) => 
+          <Post 
+            backgroundImage={image}   
+            isMouseOver={itemUnderMouse === index}
+            key={index.toString()} 
+            {...{ index, mousesOver$, setMousesOver$ } } />
+        )}
       </Posts>
     </Container>
   )
