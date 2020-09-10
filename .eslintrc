@@ -1,6 +1,10 @@
 {
     "extends": [
-        "eslint-config-mathias/typescript",
-        "eslint-config-mathias/react"
-    ]
+        "@mathias5r/eslint-config-typescript",
+        "@mathias5r/eslint-config-react"
+    ],
+    "rules": {
+        "import/namespace": "off",
+        "import/named": "off"
+    }
 }
