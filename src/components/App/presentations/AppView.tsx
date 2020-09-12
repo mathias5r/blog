@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { Observable, fromEvent, merge } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
-import { FromEventTarget } from 'rxjs/internal/observable/fromEvent';
+import { Observable } from 'rxjs';
 
-import Post from './components/Post';
-import profileImage from './15868862.png';
-import diagonalViewStyles from './helpers/diagonalViewStyles';
+import Post from 'components/Post';
+import profileImage from 'assets/imgs/profile.png';
+import diagonalViewStyles from 'helpers/diagonalViewStyles';
+
+interface AppViewProps {
+  itemUnderMouse: number | undefined;
+  mousesOver$: Observable<any>[];
+  setMousesOver$: ($: Observable<any>[]) => void;
+}
 
 const Container = styled.div`
   height: 100vh;
@@ -62,25 +66,8 @@ const images = [
   'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
 ];
 
-const App = (): JSX.Element => {
-  const initial: Observable<any>[] = [];
-  const [mousesOver$, setMousesOver$] = useState(initial);
-  const [itemUnderMouse, setItemUnderMouse] = useState(undefined);
-
-  useEffect(() => {
-    const posts$ = fromEvent(
-      document.getElementById('posts') as FromEventTarget<Event>,
-      'mouseleave',
-    ).pipe(map(() => undefined));
-
-    const merge$ = merge(...mousesOver$, posts$)
-      .pipe(debounceTime(200))
-      .subscribe((index) => setItemUnderMouse(index));
-
-    return (): void => {
-      merge$.unsubscribe();
-    };
-  }, [mousesOver$]);
+const AppView = (props: AppViewProps): JSX.Element => {
+  const { itemUnderMouse, mousesOver$, setMousesOver$ } = props;
 
   return (
     <Container>
@@ -104,4 +91,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export default AppView;
