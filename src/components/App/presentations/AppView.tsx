@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 import { Observable } from 'rxjs';
 
-import Post from 'components/Post';
-import profileImage from 'assets/imgs/profile.png';
 import diagonalViewStyles from 'helpers/diagonalViewStyles';
+
+import { Post } from 'components/Post';
+import { Profile } from 'components/Profile';
 
 interface AppViewProps {
   itemUnderMouse: number | undefined;
@@ -17,46 +18,40 @@ const Container = styled.div`
   height: 100vh;
   background-color: black;
   display: grid;
+  overflow: hidden;
+  padding: 0;
+
   @media (min-width: 1200px) {
     grid-template-columns: 1fr 3fr;
   }
-  overflow: hidden;
-  padding: 0;
 `;
 
-const Posts = styled.div`
+const HeaderPosts = styled.div`
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
   position: relative;
   padding-left: 100px;
+
   ${diagonalViewStyles(-20)};
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
-const Info = styled.div`
-  display: flex;
-  flex: 1;
+const BodyPosts = styled.div`
+  height: 2000px;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: none;
+  background-color: black;
+
+  @media only screen and (max-width: 1200px) {
+    display: flex; 
+  }
 `;
 
-const Profile = styled.div`
-  width: 300px;
-  height: 300px;
-  border-radius: 150px;
-  background-color: red;
-  overflow: hidden;
-`;
-
-const ProfileImage = styled.img`
-  width: 300px;
-  height: 300px;
-`;
-
-const Name = styled.h3`
-  color: white;
-  text-align: center;
+const Timeline = styled.div`
+  background-color: black;
 `;
 
 const images = [
@@ -70,24 +65,33 @@ const AppView = (props: AppViewProps): JSX.Element => {
   const { itemUnderMouse, mousesOver$, setMousesOver$ } = props;
 
   return (
-    <Container>
-      <Info>
-        <Profile>
-          <ProfileImage src={profileImage} />
-        </Profile>
-        <Name>Mathias Silva da Rosa</Name>
-      </Info>
-      <Posts id="posts">
-        {images.map((image, index) => (
-          <Post
-            backgroundImage={image}
-            isMouseOver={itemUnderMouse === index}
-            key={index.toString()}
-            {...{ index, mousesOver$, setMousesOver$ }}
-          />
-        ))}
-      </Posts>
-    </Container>
+    <>
+      <Container>
+        <Profile />
+        <HeaderPosts id="posts">
+          {images.map((image, index) => (
+            <Post
+              backgroundImage={image}
+              isMouseOver={itemUnderMouse === index}
+              key={index.toString()}
+              {...{ index, mousesOver$, setMousesOver$ }}
+            />
+          ))}
+        </HeaderPosts>
+      </Container>
+      <Timeline>
+        <BodyPosts>
+          {images.map((image, index) => (
+            <Post
+              backgroundImage={image}
+              isMouseOver={itemUnderMouse === index}
+              key={index.toString()}
+              {...{ index, mousesOver$, setMousesOver$ }}
+            />
+          ))}
+        </BodyPosts>
+      </Timeline>
+    </>
   );
 };
 

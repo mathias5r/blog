@@ -27,7 +27,7 @@ const PostContainer = (props: PostContainerProps): JSX.Element => {
     setMousesOver$([...mousesOver$]);
   }, [id]);
 
-  return <PostView {...{ id, backgroundImage, isMouseOver }}/>
+  return <PostView {...{ backgroundImage, id, isMouseOver }}/>
 }
 
 export default PostContainer;

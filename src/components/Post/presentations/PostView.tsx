@@ -27,6 +27,16 @@ const Background = styled.img<{ isMouseOver: boolean }>`
   transition-property: opacity;
   z-index: 1;
   transition: all 500ms ease-in-out;
+
+  @media only screen and (max-width: 1200px) {
+    ${diagonalViewStyles(0)};
+    left: 0;
+    max-width: 100%;
+    min-height: 500px;
+    min-width: 600px;
+    height: auto;
+    opacity: 0.5;
+  }
 `;
 
 const Content = styled.div`
@@ -39,6 +49,10 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media only screen and (max-width: 1200px) {
+    ${diagonalViewStyles(0)};
+  }
 `;
 
 const Title = styled.h1<{ isMouseOver: boolean }>`
