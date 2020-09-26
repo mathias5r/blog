@@ -4,9 +4,9 @@ import { Observable, fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FromEventTarget } from 'rxjs/internal/observable/fromEvent';
 
-import PostView from '../presentations/PostView';
+import HeaderPostView from '../presentations/HeaderPostView';
 
-interface PostContainerProps {
+interface HeaderPostContainerProps {
   index: number;
   backgroundImage: string;
   isMouseOver: boolean;
@@ -14,7 +14,7 @@ interface PostContainerProps {
   setMousesOver$: ($: Observable<any>[]) => void;
 }
 
-const PostContainer = (props: PostContainerProps): JSX.Element => {
+const HeaderPostContainer = (props: HeaderPostContainerProps): JSX.Element => {
   const { index, backgroundImage, isMouseOver, mousesOver$, setMousesOver$ } = props;
 
   const id = `post${index}`;
@@ -27,7 +27,7 @@ const PostContainer = (props: PostContainerProps): JSX.Element => {
     setMousesOver$([...mousesOver$]);
   }, [id]);
 
-  return <PostView {...{ backgroundImage, id, isMouseOver }}/>
+  return <HeaderPostView {...{ backgroundImage, id, isMouseOver }}/>
 }
 
-export default PostContainer;
+export default HeaderPostContainer;

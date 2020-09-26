@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 
 import diagonalViewStyles from 'helpers/diagonalViewStyles';
 
-import { Post } from 'components/Post';
+import { HeaderPost } from 'components/HeaderPost';
+import { TimelinePost } from 'components/TimelinePost';
 import { Profile } from 'components/Profile';
 
 interface AppViewProps {
@@ -14,7 +15,7 @@ interface AppViewProps {
   setMousesOver$: ($: Observable<any>[]) => void;
 }
 
-const Container = styled.div`
+const Header = styled.div`
   height: 100vh;
   background-color: black;
   display: grid;
@@ -32,6 +33,7 @@ const HeaderPosts = styled.div`
   overflow: hidden;
   position: relative;
   padding-left: 100px;
+  background-color: 'blue';
 
   ${diagonalViewStyles(-20)};
   @media only screen and (max-width: 1200px) {
@@ -39,19 +41,11 @@ const HeaderPosts = styled.div`
   }
 `;
 
-const BodyPosts = styled.div`
-  height: 2000px;
-  flex-direction: column;
+const TimelinePosts = styled.div`
   display: none;
-  background-color: black;
-
   @media only screen and (max-width: 1200px) {
-    display: flex; 
+    display: block;
   }
-`;
-
-const Timeline = styled.div`
-  background-color: black;
 `;
 
 const images = [
@@ -66,11 +60,11 @@ const AppView = (props: AppViewProps): JSX.Element => {
 
   return (
     <>
-      <Container>
+      <Header>
         <Profile />
         <HeaderPosts id="posts">
           {images.map((image, index) => (
-            <Post
+            <HeaderPost
               backgroundImage={image}
               isMouseOver={itemUnderMouse === index}
               key={index.toString()}
@@ -78,19 +72,12 @@ const AppView = (props: AppViewProps): JSX.Element => {
             />
           ))}
         </HeaderPosts>
-      </Container>
-      <Timeline>
-        <BodyPosts>
-          {images.map((image, index) => (
-            <Post
-              backgroundImage={image}
-              isMouseOver={itemUnderMouse === index}
-              key={index.toString()}
-              {...{ index, mousesOver$, setMousesOver$ }}
-            />
-          ))}
-        </BodyPosts>
-      </Timeline>
+      </Header>
+      <TimelinePosts>
+        {images.map((image, index) => (
+          <TimelinePost key={index.toString()} image={image} />
+        ))}
+      </TimelinePosts>
     </>
   );
 };

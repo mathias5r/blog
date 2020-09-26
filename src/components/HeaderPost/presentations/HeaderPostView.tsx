@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import diagonalViewStyles from 'helpers/diagonalViewStyles';
 
+import { text1Regular } from 'text/text1';
+
 interface PostProps {
   id: string;
   backgroundImage: string;
@@ -71,7 +73,7 @@ const Text = styled.h4<{ isMouseOver: boolean }>`
   text-align: center;
 `;
 
-const Post = (props: PostProps): JSX.Element => {
+const HeaderPostView = (props: PostProps): JSX.Element => {
   const { id, backgroundImage, isMouseOver } = props;
 
   return (
@@ -90,4 +92,4 @@ const Post = (props: PostProps): JSX.Element => {
   );
 };
 
-export default Post;
+export default HeaderPostView;
