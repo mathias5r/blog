@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'TitilliumWeb-Regular';
+  src: local('TitilliumWeb'), url('./assets/fonts/TitilliumWeb/TitilliumWeb-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWeb-Bold';
+  src: local('TitilliumWeb'), url('./assets/fonts/TitilliumWeb/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWeb-Light';
+  src: local('TitilliumWeb'), url('./assets/fonts/TitilliumWeb/TitilliumWeb-Light.ttf') format('truetype');
+}

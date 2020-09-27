@@ -16,7 +16,6 @@ const Profile = styled.div`
   width: 300px;
   height: 300px;
   border-radius: 150px;
-  background-color: red;
   overflow: hidden;
 `;
 
