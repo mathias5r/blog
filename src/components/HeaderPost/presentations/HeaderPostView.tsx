@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import diagonalViewStyles from 'helpers/diagonalViewStyles';
 import textBehavior from 'helpers/textBehavior';
 
-import { text3Regular } from 'text/text3';
+import { text3Bold } from 'text/text3';
 import { text4Light } from 'text/text4';
 
 interface HeaderPostProps {
@@ -37,7 +37,7 @@ const Background = styled.img<{ isMouseOver: boolean }>`
   transition: all 500ms ease-in-out;
   z-index: 1;
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1300px) {
     ${diagonalViewStyles(0)};
     height: auto;
     left: 0;
@@ -59,12 +59,12 @@ const Content = styled.div`
   width: 100%;
   z-index: 2;
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1300px) {
     ${diagonalViewStyles(0)};
   }
 `;
 
-const Title = styled(text3Regular)<{ isMouseOver: boolean }>`
+const Title = styled(text3Bold)<{ isMouseOver: boolean }>`
   ${(props): any => textBehavior(props.isMouseOver)}
 `;
 
@@ -79,7 +79,6 @@ const Link = styled.a<{ isMouseOver: boolean }>`
 const HeaderPostView = (props: HeaderPostProps): JSX.Element => {
   const { id, isMouseOver, post } = props;
   const { image, title, intro, url } = post;
-  console.log(process.env.PUBLIC_URL);
 
   return (
     <Container {...{ id, isMouseOver }}>

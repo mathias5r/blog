@@ -1,7 +1,7 @@
 export default [
   {
     'image': `${process.env.PUBLIC_URL}/imgs/post1.jpg`,
-    'intro': 'A service detached from the main thread, alive almost one hundred percent of the time to execute tasks in background, with the application closed or after a reboot.',
+    'intro': 'A service detached from the main thread to execute tasks in background, with the application closed or after a reboot.',
     'title': 'How to create an unstoppable service in React Native using Headless JS',
     'url': 'https://medium.com/reactbrasil/how-to-create-an-unstoppable-service-in-react-native-using-headless-js-93656b6fd5d1'
   },
@@ -13,7 +13,7 @@ export default [
   },
   {
     'image': `${process.env.PUBLIC_URL}/imgs/post3.jpg`,
-    'intro': 'A custom hook that can be used in every basic animation in your React Native project. To illustrate, let\'s create a simple animated square that changes its size with a button press',
+    'intro': 'A custom hook that can be used in every basic animation in your React Native project.',
     'title': 'Custom animation hook in React Native',
     'url': 'https://medium.com/reactbrasil/custom-animation-hook-in-react-native-aad1e4fff807'
   },

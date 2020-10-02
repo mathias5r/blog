@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { text3Regular } from 'text/text3';
+import { text3Bold } from 'text/text3';
 import { text4Light } from 'text/text4';
 
 interface TimelinePostViewProps {
@@ -41,12 +41,14 @@ const Content = styled.div`
   position: absolute;
 `;
 
-const Title = styled(text3Regular)`
+const Title = styled(text3Bold)`
   color: white;
+  padding: 0 10px;
 `;
 
 const Text = styled(text4Light)`
   color: white;
+  padding: 0 10px;
 `;
 
 const Link = styled.a`

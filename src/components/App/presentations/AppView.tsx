@@ -24,7 +24,7 @@ const Header = styled.div`
   overflow: hidden;
   padding: 0;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1300px) {
     grid-template-columns: 1fr 3fr;
     height: 100vh;
   }
@@ -36,17 +36,16 @@ const HeaderPosts = styled.div`
   overflow: hidden;
   position: relative;
   padding-left: 100px;
-  background-color: 'blue';
 
   ${diagonalViewStyles(-20)};
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1300px) {
     display: none;
   }
 `;
 
 const TimelinePosts = styled.div`
   display: none;
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1300px) {
     display: block;
   }
 `;
