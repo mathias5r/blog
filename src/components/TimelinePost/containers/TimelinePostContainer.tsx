@@ -3,13 +3,19 @@ import React from 'react';
 import TimelinePostView from '../presentations/TimelinePostView';
 
 interface TimelinePostContainerProps {
-  image: string;
+  post: {
+    image: string;
+    title: string;
+    intro: string;
+    url: string;
+  };
 }
 
 const TimelinePostContainer = (props: TimelinePostContainerProps): JSX.Element => {
-  const { image } = props;
+  const { post } = props;
+  
   return (
-    <TimelinePostView {...{ image }}/>
+    <TimelinePostView {...{ post }}/>
   )
 }
 

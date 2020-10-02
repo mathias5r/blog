@@ -2,13 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 import diagonalViewStyles from 'helpers/diagonalViewStyles';
+import textBehavior from 'helpers/textBehavior';
 
 import { text3Regular } from 'text/text3';
 import { text4Light } from 'text/text4';
 
 interface HeaderPostProps {
   id: string;
-  backgroundImage: string;
+  post: {
+    image: string;
+    title: string;
+    intro: string;
+    url: string;
+  };
   isMouseOver: boolean;
 }
 
@@ -59,34 +65,30 @@ const Content = styled.div`
 `;
 
 const Title = styled(text3Regular)<{ isMouseOver: boolean }>`
-  color: white;
-  opacity: ${({ isMouseOver }): number => (isMouseOver ? 1 : 0)};
-  transition: opacity 500ms ease-in-out;
+  ${(props): any => textBehavior(props.isMouseOver)}
 `;
 
 const Text = styled(text4Light)<{ isMouseOver: boolean }>`
-  color: white;
-  opacity: ${({ isMouseOver }): number => (isMouseOver ? 1 : 0)};
-  text-align: center;
-  transition: opacity 500ms ease-in-out;
-  width: 250px;
+  ${(props): any => textBehavior(props.isMouseOver)}
+`;
+
+const Link = styled.a<{ isMouseOver: boolean }>`
+  ${(props): any => textBehavior(props.isMouseOver)}
 `;
 
 const HeaderPostView = (props: HeaderPostProps): JSX.Element => {
-  const { id, backgroundImage, isMouseOver } = props;
+  const { id, isMouseOver, post } = props;
+  const { image, title, intro, url } = post;
+  console.log(process.env.PUBLIC_URL);
 
   return (
     <Container {...{ id, isMouseOver }}>
       <Content>
-        <Title {...{ isMouseOver }}>Title</Title>
-        <Text {...{ isMouseOver }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ratione
-          vitae ipsam quidem delectus, laudantium magni animi molestias illum,
-          cum nam? Voluptate nesciunt sunt delectus totam veritatis, asperiores
-          quaerat vitae!
-        </Text>
+        <Title {...{ isMouseOver }}>{title}</Title>
+        <Text {...{ isMouseOver }}>{intro}</Text>
+        <Link href={url} {...{ isMouseOver }}>See more</Link>
       </Content>
-      <Background isMouseOver={isMouseOver} src={backgroundImage} />
+      <Background isMouseOver={isMouseOver} src={image} />
     </Container>
   );
 };

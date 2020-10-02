@@ -9,6 +9,8 @@ import { HeaderPost } from 'components/HeaderPost';
 import { TimelinePost } from 'components/TimelinePost';
 import { Profile } from 'components/Profile';
 
+import posts from 'config/posts';
+
 interface AppViewProps {
   itemUnderMouse: number | undefined;
   mousesOver$: Observable<any>[];
@@ -16,7 +18,7 @@ interface AppViewProps {
 }
 
 const Header = styled.div`
-  height: 100vh;
+  height: 80vh;
   background-color: black;
   display: grid;
   overflow: hidden;
@@ -24,6 +26,7 @@ const Header = styled.div`
 
   @media (min-width: 1200px) {
     grid-template-columns: 1fr 3fr;
+    height: 100vh;
   }
 `;
 
@@ -48,12 +51,6 @@ const TimelinePosts = styled.div`
   }
 `;
 
-const images = [
-  'https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-  'https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-  'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-];
 
 const AppView = (props: AppViewProps): JSX.Element => {
   const { itemUnderMouse, mousesOver$, setMousesOver$ } = props;
@@ -63,19 +60,18 @@ const AppView = (props: AppViewProps): JSX.Element => {
       <Header>
         <Profile />
         <HeaderPosts id="posts">
-          {images.map((image, index) => (
+          {posts.map((post, index) => (
             <HeaderPost
-              backgroundImage={image}
               isMouseOver={itemUnderMouse === index}
               key={index.toString()}
-              {...{ index, mousesOver$, setMousesOver$ }}
+              {...{ index, mousesOver$, post, setMousesOver$ }}
             />
           ))}
         </HeaderPosts>
       </Header>
       <TimelinePosts>
-        {images.map((image, index) => (
-          <TimelinePost key={index.toString()} image={image} />
+        {posts.map((post, index) => (
+          <TimelinePost key={index.toString()} post={post} />
         ))}
       </TimelinePosts>
     </>

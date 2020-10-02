@@ -8,14 +8,19 @@ import HeaderPostView from '../presentations/HeaderPostView';
 
 interface HeaderPostContainerProps {
   index: number;
-  backgroundImage: string;
+  post: {
+    image: string;
+    title: string;
+    intro: string;
+    url: string;
+  };
   isMouseOver: boolean;
   mousesOver$: Observable<any>[];
   setMousesOver$: ($: Observable<any>[]) => void;
 }
 
 const HeaderPostContainer = (props: HeaderPostContainerProps): JSX.Element => {
-  const { index, backgroundImage, isMouseOver, mousesOver$, setMousesOver$ } = props;
+  const { index, isMouseOver, mousesOver$, post, setMousesOver$ } = props;
 
   const id = `post${index}`;
 
@@ -27,7 +32,7 @@ const HeaderPostContainer = (props: HeaderPostContainerProps): JSX.Element => {
     setMousesOver$([...mousesOver$]);
   }, [id]);
 
-  return <HeaderPostView {...{ backgroundImage, id, isMouseOver }}/>
+  return <HeaderPostView {...{ id, isMouseOver, post }}/>
 }
 
 export default HeaderPostContainer;

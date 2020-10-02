@@ -5,7 +5,12 @@ import { text3Regular } from 'text/text3';
 import { text4Light } from 'text/text4';
 
 interface TimelinePostViewProps {
-  image: string;
+  post: {
+    image: string;
+    title: string;
+    intro: string;
+    url: string;
+  };
 }
 
 const Container = styled.div<{ image: string }>`
@@ -31,34 +36,33 @@ const Container = styled.div<{ image: string }>`
 `;
 
 const Content = styled.div`
-  width: 300px;
+  max-width: 450px;
   text-align: center;
   position: absolute;
 `;
 
 const Title = styled(text3Regular)`
   color: white;
-  transition: opacity 500ms ease-in-out;
 `;
 
 const Text = styled(text4Light)`
   color: white;
-  text-align: center;
-  transition: opacity 500ms ease-in-out;
+`;
+
+const Link = styled.a`
+  color: white;
 `;
 
 const TimelinePost = (props: TimelinePostViewProps): JSX.Element => {
-  const { image } = props;
+  const { post } = props;
+  const { image, title, intro, url } = post;
+
   return (
-    <Container {...{ image }} >
+    <Container image={image} >
       <Content>
-        <Title>Title</Title>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ratione
-          vitae ipsam quidem delectus, laudantium magni animi molestias illum,
-          cum nam? Voluptate nesciunt sunt delectus totam veritatis, asperiores
-          quaerat vitae!
-        </Text>
+        <Title>{title}</Title>
+        <Text>{intro}</Text>
+        <Link href={url}>See more</Link>
       </Content>
     </Container>
   )
