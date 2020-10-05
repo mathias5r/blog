@@ -70,7 +70,7 @@ const AppView = (props: AppViewProps): JSX.Element => {
       </Header>
       <TimelinePosts>
         {posts.map((post, index) => (
-          <TimelinePost key={index.toString()} post={post} />
+          <TimelinePost key={index.toString()} {...{ index, post }} />
         ))}
       </TimelinePosts>
     </>

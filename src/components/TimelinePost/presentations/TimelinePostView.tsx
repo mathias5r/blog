@@ -5,15 +5,17 @@ import { text3Bold } from 'text/text3';
 import { text4Light } from 'text/text4';
 
 interface TimelinePostViewProps {
+  id: string;
   post: {
     image: string;
     title: string;
     intro: string;
     url: string;
   };
+  visible: boolean;
 }
 
-const Container = styled.div<{ image: string }>`
+const Container = styled.div<{ image: string; visible: boolean }>`
   height: 500px;
   position: relative;
   background-color: black;
@@ -31,14 +33,17 @@ const Container = styled.div<{ image: string }>`
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.3;
+    opacity: ${(props: any): number => props.visible ? 0.3 : 1};
+    transition: opacity 500ms ease-in-out;
   }
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ visible: boolean }>`
   max-width: 450px;
   text-align: center;
   position: absolute;
+  opacity: ${(props: any): number => props.visible ? 1 : 0};
+  transition: opacity 500ms ease-in-out;
 `;
 
 const Title = styled(text3Bold)`
@@ -56,12 +61,12 @@ const Link = styled.a`
 `;
 
 const TimelinePost = (props: TimelinePostViewProps): JSX.Element => {
-  const { post } = props;
+  const { id, post, visible } = props;
   const { image, title, intro, url } = post;
 
   return (
-    <Container image={image} >
-      <Content>
+    <Container {...{id, image, visible }}>
+      <Content {...{ visible }}>
         <Title>{title}</Title>
         <Text>{intro}</Text>
         <Link href={url}>See more</Link>
