@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import LazyImage from 'components/LazyImage/LazyImage';
-import React, { FunctionComponent } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface ImageProps {
@@ -18,6 +17,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;
 
 const Common = styled.div`
@@ -40,18 +40,17 @@ const Thumb = styled(Common)<{ isLoaded: boolean; thumb: string}>`
   background-size: cover;
   background-position: center;
   z-index: 2;
-  overflow: hidden;
 `;
 
-const TimelineImage: FunctionComponent<ImageProps> = ({
+const TimelineImage: React.FC<ImageProps> = ({
   id,
   image,
   isInViewPort,
   thumb,
   children,
   visible,
-}): JSX.Element => {
-  const [isLoaded, setIsLoaded] = React.useState(false);
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Container {...{ id }}>

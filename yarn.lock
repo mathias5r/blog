@@ -1360,10 +1360,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@mathias5r/eslint-config-react@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@mathias5r/eslint-config-react/-/eslint-config-react-3.0.0.tgz#fb57bf2f03f0138bc6f3ab1055e22a94ebd3ea72"
-  integrity sha512-8mhPIERuJUvgrowwx4N24TdEXnaXjyQmFcrLaiHKb1r4doR9bDGzM4+xQrRnEuLGa5mM8ig3jiuqr4CjZfNX4w==
+"@mathias5r/eslint-config-react@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@mathias5r/eslint-config-react/-/eslint-config-react-5.0.1.tgz#311f2bfae3320671c6b9e2a9b14ea9f78f1de421"
+  integrity sha512-Xl+oQsXcEHY0Pf4wZ0vDbHJsJWFa9SdMN7AAEj9hgjJl8muJss5Tz/quVdFtSTNM/Fv8hNrW8oXuVLJAchvyQQ==
   dependencies:
     babel-eslint "10.0.3"
     eslint-config-airbnb "18.0.1"
@@ -1371,16 +1371,16 @@
     eslint-plugin-import "^2.22.0"
     eslint-plugin-react "^7.20.3"
 
-"@mathias5r/eslint-config-typescript@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@mathias5r/eslint-config-typescript/-/eslint-config-typescript-4.0.1.tgz#3be0c059d96d432b020421cf1aee8d0da7f7ceac"
-  integrity sha512-FQBrBkP/ByeJOEeIy0iZT4MXHhzZ5yV/plnhQHNzTdaClyPVVwJcgw40A6o4/Jg99ioBPA31Moxlc9FipWLz+Q==
+"@mathias5r/eslint-config-typescript@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@mathias5r/eslint-config-typescript/-/eslint-config-typescript-5.0.0.tgz#d53ce2c2ed6d50e48e4f755464fce1bcb9b4f69b"
+  integrity sha512-WqWpeZRlj8ojszpEVaiq4X4VKhuuabe+VpU1lMgYBq5xzBi7AdzmCctirqSBTwVGbGwu3owgUTVl+3LtEe4L9Q==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.5.0"
     "@typescript-eslint/parser" "^3.5.0"
     eslint-import-resolver-typescript "^2.0.0"
 
-"@mathias5r/prettier-config@^5.0.0":
+"@mathias5r/prettier-config@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@mathias5r/prettier-config/-/prettier-config-5.0.0.tgz#0a52fe036db075eefd3be89ffd9500715643e6b4"
   integrity sha512-9wAHCoKVz4qfx4d9QXvZDP32MV1Ml6C9mC83ebR3dJ30cKGxDKyXWT4wxvyaAmXZ7A/uaWQQiW956aWjrc8jGw==
