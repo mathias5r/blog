@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Observable } from 'rxjs';
 
-import diagonalViewStyles from 'helpers/diagonalViewStyles';
+import { diagonalViewStyles } from 'styles';
 
 import { HeaderPost } from 'components/HeaderPost';
 import { TimelinePost } from 'components/TimelinePost';

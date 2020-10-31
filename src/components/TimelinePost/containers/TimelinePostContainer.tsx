@@ -1,24 +1,13 @@
 import React, { useState } from 'react';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import TimelinePostContainerProps from '../interfaces/TimelinePostContainerProps';
 
 import TimelinePostView from '../presentations/TimelinePostView';
 
-interface TimelinePostContainerProps {
-  index: number;
-  post: {
-    image: string;
-    title: string;
-    thumb: string;
-    intro: string;
-    url: string;
-  };
-}
-
-const TimelinePostContainer = (
-  props: TimelinePostContainerProps
-): JSX.Element => {
-  const { index, post } = props;
-
+const TimelinePostContainer: React.FC<TimelinePostContainerProps> = ({
+  index,
+  post,
+}): JSX.Element => {
   const [visible, setVisible] = useState(false);
   const [isInViewPort, setIsInViewPort] = useState(false);
 

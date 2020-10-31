@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import diagonalViewStyles from 'helpers/diagonalViewStyles';
+import { diagonalViewStyles } from 'styles';
 import textBehavior from 'helpers/textBehavior';
 
 import { text3Bold } from 'text/text3';

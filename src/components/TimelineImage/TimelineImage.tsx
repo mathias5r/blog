@@ -1,48 +1,37 @@
-import LazyImage from 'components/LazyImage/LazyImage';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-interface ImageProps {
-  id: string;
-  image: string;
-  isInViewPort: boolean;
-  thumb: string;
-  visible: boolean;
-}
+import Colors from 'assets/Colors';
+import { imageCommonStyles } from 'styles';
+
+import LazyImage from 'components/LazyImage/LazyImage';
+
+import TimelineImageProps from './interfaces/TimelineImageProps';
 
 const Container = styled.div`
-  height: 500px;
-  position: relative;
-  background-color: black;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: ${Colors.BACKGROUND};
+  display: flex;
+  height: 500px;
+  justify-content: center;
   overflow: hidden;
+  position: relative;
 `;
 
-const Common = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 1;
-  width: 100%;
-  height: auto;
-`;
+const Thumb = styled.div<{ isLoaded: boolean; thumb: string } >`
+  ${imageCommonStyles};
 
-const Thumb = styled(Common)<{ isLoaded: boolean; thumb: string}>`
-  filter: blur(20px);
   display: ${(props: any): string =>
     props.isLoaded ? 'none' : 'block'};
-  transition: visibility 500ms ease-in-out;
   background-image: url(${(props: any): { image: string } =>  props.thumb});
   background-size: cover;
   background-position: center;
+  filter: blur(20px);
+  transition: visibility 500ms ease-in-out;
   z-index: 2;
 `;
 
-const TimelineImage: React.FC<ImageProps> = ({
+const TimelineImage: React.FC<TimelineImageProps> = ({
   id,
   image,
   isInViewPort,

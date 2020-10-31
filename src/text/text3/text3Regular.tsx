@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
+import Colors from 'assets/Colors';
+
 export default styled.p`
+  color: ${Colors.TEXT};
   font-family: "TitilliumWeb-Regular";
   font-size: 1.3rem;
   letter-spacing: 0;

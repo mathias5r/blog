@@ -1,47 +1,39 @@
-import React from 'react';
 import styled from 'styled-components';
+import React from 'react';
 
 import { text3Bold } from 'text/text3';
 import { text4Light } from 'text/text4';
-import TimelineImage from '../../TimelineImage/TimelineImage';
+import Colors from 'assets/Colors';
 
-interface TimelinePostViewProps {
-  id: string;
-  post: {
-    image: string;
-    title: string;
-    thumb: string;
-    intro: string;
-    url: string;
-  };
-  visible: boolean;
-  isInViewPort: boolean;
-}
+import TimelineImage from '../../TimelineImage/TimelineImage';
+import TimelinePostViewProps from '../interfaces/TimelinePostViewProps';
+
 const Content = styled.div<{ visible: boolean }>`
-  position: absolute;
-  z-index: 3;
   max-width: 450px;
-  text-align: center;
+  opacity: 1;
   position: absolute;
-  opacity: 1
+  text-align: center;
+  z-index: 3;
 `;
 
 const Title = styled(text3Bold)`
-  color: white;
   padding: 0 10px;
 `;
 
 const Text = styled(text4Light)`
-  color: white;
   padding: 0 10px;
 `;
 
 const Link = styled.a`
-  color: white;
+  color: ${Colors.TEXT};
 `;
 
-const TimelinePost = (props: TimelinePostViewProps): JSX.Element => {
-  const { id, isInViewPort, post, visible } = props;
+const TimelinePost: React.FC<TimelinePostViewProps> = ({
+  id,
+  isInViewPort,
+  post,
+  visible,
+}): JSX.Element => {
   const { image, title, thumb, intro, url } = post;
 
   return (
@@ -52,7 +44,7 @@ const TimelinePost = (props: TimelinePostViewProps): JSX.Element => {
         <Link href={url}>See more</Link>
       </Content>
     </TimelineImage>
-  )
-}
+  );
+};
 
 export default TimelinePost;
