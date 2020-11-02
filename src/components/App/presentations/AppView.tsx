@@ -18,9 +18,9 @@ interface AppViewProps {
 }
 
 const Header = styled.div`
-  height: 80vh;
   background-color: black;
   display: grid;
+  height: 80vh;
   overflow: hidden;
   padding: 0;
 
@@ -34,8 +34,8 @@ const HeaderPosts = styled.div`
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  position: relative;
   padding-left: 100px;
+  position: relative;
 
   ${diagonalViewStyles(-20)};
   @media only screen and (max-width: 1300px) {

@@ -18,9 +18,12 @@ const Container = styled.div<ContainerViewProps>`
   transition: opacity 1000ms ease-in-out;
 `;
 
-const LazyImage = (props: LazyImageProps): JSX.Element => {
-  const { image, isInViewPort, isLoaded, setIsLoaded } = props;
-
+const LazyImage: React.FC<LazyImageProps> = ({
+  image,
+  isInViewPort,
+  isLoaded,
+  setIsLoaded,
+}): JSX.Element => {
   useLazyImage(image, () => setIsLoaded(true));
 
   return (

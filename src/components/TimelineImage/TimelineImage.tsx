@@ -23,7 +23,7 @@ const Thumb = styled.div<{ isLoaded: boolean; thumb: string } >`
 
   display: ${(props: any): string =>
     props.isLoaded ? 'none' : 'block'};
-  background-image: url(${(props: any): { image: string } =>  props.thumb});
+  background-image: url(${(props: any): { thumb: string } =>  props.thumb});
   background-size: cover;
   background-position: center;
   filter: blur(20px);
