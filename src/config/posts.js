@@ -25,6 +25,6 @@ export default [
     'intro': 'Bring all your configs together in a monorepo and reuse them through all your projects.',
     'thumb': `${process.env.PUBLIC_URL}/imgs/post4.jpg`,
     'title': 'Reuse your eslint/prettier config in a monorepo with Lerna',
-    'url': ''
+    'url': 'https://medium.com/@mathiassilva4/reuse-your-eslint-prettier-config-in-a-monorepo-with-lerna-54c1800cacdc'
   }
 ]
