@@ -8,38 +8,13 @@ import { text3Bold } from 'text/text3';
 import { text4Light } from 'text/text4';
 
 import HeaderPostViewProps from '../interfaces/HeaderPostViewProps';
+import HeaderImage from 'components/HeaderImage/HeaderImage';
 
 const Container = styled.div<{ isMouseOver: boolean }>`
   flex: ${({ isMouseOver }): number => (isMouseOver ? 0.6 : 0.25)};
   overflow: hidden;
   position: relative;
   transition: flex 500ms ease-in-out;
-`;
-
-const Background = styled.div<{ isMouseOver: boolean; image: string }>`
-  ${diagonalViewStyles(20)};
-
-  background-image: url(${(props: any): { image: string } => props.image});
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  left: -200px;
-  min-height: 800px;
-  opacity: ${({ isMouseOver }): number => (isMouseOver ? 0.3 : 1)};
-  position: absolute;
-  transition: opacity 500ms ease-in-out;
-  width: 1028px;
-  z-index: 1;
-
-  @media only screen and (max-width: 1300px) {
-    ${diagonalViewStyles(0)};
-    height: auto;
-    left: 0;
-    max-width: 100%;
-    min-height: 500px;
-    min-width: 600px;
-    opacity: 0.5;
-  }
 `;
 
 const Content = styled.div`
@@ -75,7 +50,7 @@ const HeaderPostView: React.FC<HeaderPostViewProps> = ({
   isMouseOver,
   post,
 }): JSX.Element => {
-  const { image, title, intro, url } = post;
+  const { image, title, intro, url, thumb } = post;
 
   return (
     <Container {...{ id, isMouseOver }}>
@@ -86,7 +61,7 @@ const HeaderPostView: React.FC<HeaderPostViewProps> = ({
           See more
         </Link>
       </Content>
-      <Background isMouseOver={isMouseOver} image={image} />
+      <HeaderImage {...{ image, isMouseOver, thumb }} />
     </Container>
   );
 };

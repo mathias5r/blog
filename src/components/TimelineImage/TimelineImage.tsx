@@ -40,7 +40,7 @@ const TimelineImage: React.FC<TimelineImageProps> = ({
   visible,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-
+  
   return (
     <Container {...{ id }}>
       {visible && (
@@ -49,6 +49,9 @@ const TimelineImage: React.FC<TimelineImageProps> = ({
           isLoaded={isLoaded}
           setIsLoaded={setIsLoaded}
           isInViewPort={isInViewPort}
+          style={{
+            opacity: isLoaded && isInViewPort ? 0.3 : 1
+          }}
         />
       )}
       <Thumb thumb={thumb} isLoaded={isLoaded} />

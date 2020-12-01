@@ -13,8 +13,6 @@ const Container = styled.div<ContainerViewProps>`
   background-image: url(${(props: any): { image: string } => props.image});
   background-size: cover;
   background-position: center;
-  opacity: ${(props: any): number =>
-    props.isLoaded && !props.isInViewPort ? 1 : 0.3};
   transition: opacity 1000ms ease-in-out;
 `;
 
@@ -23,11 +21,12 @@ const LazyImage: React.FC<LazyImageProps> = ({
   isInViewPort,
   isLoaded,
   setIsLoaded,
+  style,
 }): JSX.Element => {
   useLazyImage(image, () => setIsLoaded(true));
 
   return (
-    <Container image={image} isLoaded={isLoaded} isInViewPort={isInViewPort} />
+    <Container style={style} image={image} isLoaded={isLoaded} isInViewPort={isInViewPort} />
   );
 };
 

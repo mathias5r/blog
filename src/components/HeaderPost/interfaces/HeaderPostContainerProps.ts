@@ -6,6 +6,7 @@ export default interface HeaderPostContainerProps {
     image: string;
     title: string;
     intro: string;
+    thumb: string;
     url: string;
   };
   isMouseOver: boolean;

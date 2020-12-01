@@ -3,4 +3,5 @@ export default interface LazyImageProps {
   isInViewPort: boolean;
   isLoaded: boolean;
   setIsLoaded: Function;
+  style?: React.CSSProperties;
 }
